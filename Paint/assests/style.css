@@ -1,0 +1,611 @@
+@font-face {
+    font-family: "Segoe UI";
+    src: local("Segoe UI Regular"),
+         url("https://c.s-microsoft.com/en-us/cms/fonts/segoe-ui/segoeui.woff2") format("woff2");
+  }
+  :root {
+    --ribbon-bg: #f0f0f0;
+    --border: #d0d0d0;
+    --hover: #e6e6e6;
+    --text: #333;
+    --small: 11px;
+    --font: "Segoe UI", Tahoma, sans-serif;
+    --header-h: 160px;
+    --panel-h: 95px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: #5c5c5c;
+    padding: 20px;
+    color: var(--text);
+  }
+
+  .titlebar {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    background: #fff;
+    padding-left: 8px;
+  }
+  .quick-tools { display: flex; align-items: center; gap: 6px; }
+  .quick-tools img { width: 18px; height: 18px; }
+  .divider {
+    width: 1px; height: 18px;
+    background: #ccc; margin: 0 5px;
+  }
+  .tool-group { display: flex; gap: 2px; }
+  .tool-group button {
+    border: none; background: transparent;
+    border-radius: 2px; cursor: pointer; padding: 4px;
+  }
+  .tool-group button:hover { background: var(--hover); }
+  .window-title { font-size: 13px; margin-left: 10px; }
+  
+
+  .tabs {
+    display: flex;
+    height: 32px;
+    background: #fff;
+    border-bottom: 1px solid #ccc;
+  }
+  .tabs button {
+    font-size: 13px; padding: 5px 14px;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    background: none;
+    cursor: pointer;
+  }
+  [data-tab="file"] {
+    background: #106ebe;
+    border-color: #106ebe;
+  }
+  [data-tab="file"]:hover { background: #0d5aa3; }
+
+  .tabs .active {
+    background: var(--ribbon-bg);
+    border-color: #ccc;
+    font-weight: 600;
+    margin-bottom: -1px;
+  }
+  .tabs button:not(.active):hover { background: #e8e8e8; }
+  
+
+  .ribbon {
+    display: flex;
+    background: var(--ribbon-bg);
+    border: 1px solid var(--border);
+    border-top: none;
+    height: var(--panel-h);
+    padding: 4px 6px;
+  }
+  .ribbon section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    min-width: 100px;
+    padding: 2px 6px;
+    position: relative;
+  }
+  .ribbon section:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 6px; bottom: 18px; right: 0;
+    width: 1px; background: var(--border);
+  }
+  .ribbon footer {
+    font-size: var(--small);
+    text-align: center;
+    color: var(--text);
+  }
+  /* Đồng bộ cỡ chữ trong toàn bộ Ribbon */
+.ribbon,
+.ribbon * {
+  font-size: var(--small);
+  font-family: var(--font);
+  color: var(--text);
+  line-height: 1.2;
+}
+
+  
+  button {
+    background: none; border: none;
+    cursor: pointer;
+    color: var(--text);
+    font-family: inherit;
+  }
+  button img { display: block; background: transparent; }
+  button:hover { background: var(--hover); border-radius: 2px; }
+  
+
+  [data-panel="clipboard"] .panel-body {
+    display: flex; align-items: center;
+    height: calc(var(--panel-h) - 20px);
+  }
+  [data-panel="clipboard"] [data-action="paste"] {
+    display: flex; flex-direction: column; align-items: center;
+    width: 52px; height: 100%; margin-right: 6px;
+  }
+  [data-panel="clipboard"] [data-action="paste"] img {
+    width: 36px; height: 36px;
+  }
+  [data-panel="clipboard"] [data-action="paste"] span {
+    font-size: var(--small);
+  }
+  [data-panel="clipboard"] .side-actions {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  [data-panel="clipboard"] .side-actions button {
+    display: flex; align-items: center; gap: 4px;
+    font-size: var(--small); padding: 2px;
+  }
+  [data-panel="clipboard"] .side-actions img {
+    width: 16px; height: 16px;
+  }
+  
+
+  [data-panel="image"] .panel-body {
+    display: flex; align-items: center;
+    height: calc(var(--panel-h) - 20px);
+  }
+  [data-panel="image"] [data-action="select"] {
+    display: flex; flex-direction: column; align-items: center;
+    width: 52px; height: 100%; margin-right: 6px;
+  }
+  [data-panel="image"] [data-action="select"] img {
+    width: 30px; height: 30px;
+  }
+  [data-panel="image"] .side-actions {
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  [data-panel="image"] .side-actions button {
+    display: flex; align-items: center; gap: 4px;
+    font-size: var(--small); padding: 2px;
+  }
+  [data-panel="image"] .side-actions img {
+    width: 16px; height: 16px;
+  }
+  
+
+  [data-panel="tools"] .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2px;
+    height: calc(var(--panel-h) - 20px);
+    width: 100%;
+    justify-items: center;
+    align-items: center;
+  }
+  [data-tool] img { width: 22px; height: 22px; }
+  [data-tool].active {
+    background: #c3daf9;
+    border: 1px solid #006edf;
+    border-radius: 2px;
+  }
+
+  [data-panel="brushes"] .panel-body {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: calc(var(--panel-h) - 20px);
+  }
+  [data-panel="brushes"] img { width: 32px; height: 32px; }
+  
+
+  [data-panel="shapes"] .shapes-wrapper {
+    display: flex; align-items: center; gap: 8px;
+    height: calc(var(--panel-h) - 20px);
+  }
+
+[data-panel="shapes"] .shapes-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: calc(var(--panel-h) - 20px);
+  }
+  
+  /* Ô chứa toàn bộ grid — có khung trắng & scroll */
+  .shapes-box {
+    width: 170px;              /* khung vừa đủ như Paint */
+    height: 70px;              /* cố định chiều cao */
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 3px;
+    overflow-y: auto;          /* cho phép cuộn dọc */
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+  
+  .shapes-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+  }
+  .shapes-grid img {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  .shapes-grid img:hover {
+    outline: 1px solid #0078d7;
+    background-color: #eaf3ff;
+  }
+  
+  /* Nút Outline + Fill */
+  .fill-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .fill-options button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--small);
+  }
+  .fill-options img {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .shapes-grid img { width: 16px; height: 16px; cursor: pointer; }
+  .fill-options {
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .fill-options button {
+    display: flex; align-items: center; gap: 4px;
+    font-size: var(--small);
+  }
+  .fill-options img { width: 16px; height: 16px; }
+  
+
+  [data-panel="size"] .panel-body {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: calc(var(--panel-h) - 20px);
+  }
+  [data-panel="size"] img { width: 32px; height: 32px; }
+
+  [data-panel="colors"] .color-wrapper {
+    display: flex; align-items: center; gap: 6px;
+    height: calc(var(--panel-h) - 20px);
+  }
+  .color-box {
+    width: 36px; height: 36px;
+    border: 1px solid #666;
+  }
+  .color-wrapper span {
+    display: block; font-size: var(--small);
+    text-align: center; line-height: 1.2;
+  }
+  
+
+  [data-panel="paint3d"] .panel-body {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    height: calc(var(--panel-h) - 20px);
+  }
+  [data-panel="paint3d"] img { width: 32px; height: 32px; }
+  
+
+  #workspace {
+    background: #fff;
+    height: calc(100vh - var(--header-h));
+    overflow: auto;
+  }
+  #my-canvas {
+    display: block;
+    border: none;
+    margin: 0;
+  }
+
+[data-panel="colors"] {
+    min-width: 320px;
+  }
+  
+  .color-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    height: calc(var(--panel-h) - 20px);
+  }
+  
+  /* Color 1 + Color 2 */
+  .color-pairs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .color-box-set {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+  .color-swatch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--small);
+    color: var(--text);
+    cursor: pointer;
+  }
+  .color-swatch.active {
+    border: 1px solid #006EDF;
+    background: #C3DAF9;
+    border-radius: 2px;
+  }
+  .swatch-inner {
+    width: 38px;
+    height: 38px;
+    border: 1px solid #666;
+    margin-bottom: 2px;
+  }
+  
+  /* Palette grid */
+  .color-palette {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .color-palette .row {
+    display: flex;
+    gap: 1px;
+  }
+  .color-palette .cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #A0A0A0;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  .color-palette .cell:hover {
+    border-color: #555;
+  }
+  .color-palette .cell.empty {
+    background: transparent;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .edit-color-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 8px;
+    height: 100%;
+  }
+  .edit-color-panel img {
+    width: 40px;
+    height: 40px;
+  }
+  .edit-color-panel span {
+    font-size: var(--small);
+    text-align: center;
+    margin-top: 2px;
+  }
+  
+.tabs {
+    background: #ffffff; /* Giữ nền cho Home, View */
+    border-bottom: 1px solid #ccc;
+    position: relative;
+  }
+  
+  .tabs button[data-tab="file"],
+  .tabs .active-file {
+    background-color: #106ebe !important;
+    color: #fff !important;
+    border: 1px solid #106ebe !important;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Hover effect */
+  .tabs button[data-tab="file"]:hover,
+  .tabs .active-file:hover {
+    background-color: #0d5aa3 !important;
+  }
+  
+  /* Đảm bảo nền xanh không bị trắng đè */
+  .tabs::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #106ebe;
+    border-radius: 4px 4px 0 0;
+    z-index: 1;
+  }
+  .shapes-box {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 190px;
+    background: #fff;
+    border: 1px solid var(--border);
+    padding: 3px;
+    box-sizing: border-box;
+    overflow: hidden; /* Ẩn phần icon dư */
+    height: calc((16px * 3) + (2px * 2) + 6px); /* 3 hàng icon + khoảng trống padding/gap */
+  }
+  
+  /* Lưới icon 7 cột, có thể chứa nhiều hàng nhưng chỉ 3 hàng được hiển thị */
+  .shapes-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-rows: 16px;
+    gap: 1px;
+    width: 160px;
+    height: auto;
+  }
+  
+  /* Icon */
+  .shapes-grid img {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  .shapes-grid img:hover {
+    outline: 1px solid #0078d7;
+    background-color: #eaf3ff;
+  }
+  
+  /* Cột nút cuộn */
+  .shape-scroller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 20px;
+    gap: 3px;
+  }
+  
+  .scroll-btn {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #d0d0d0;
+    background: linear-gradient(to bottom, #fff, #f1f1f1);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    transition: 0.15s;
+  }
+  .scroll-btn:hover {
+    background: #e7f1fb;
+    border-color: #88b7e0;
+  }
+  
+  /* Vẽ mũi tên */
+  .scroll-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+  }
+  .scroll-btn.up::before {
+    border-bottom: 6px solid #366ba3;
+  }
+  .scroll-btn.down::before {
+    border-top: 6px solid #366ba3;
+  }
+  .scroll-btn.menu::before {
+    border-top: 6px solid #366ba3;
+    top: 62%;
+  }
+  .scroll-btn.menu::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    top: 4px;
+    height: 2px;
+    background: #c9c9c9;
+    border-radius: 1px;
+  }
+  .shape-scroller {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 22px;
+    height: 100%;
+    background: #ffffff; /* giữ nền đồng bộ với box */
+    padding: 3px 0;
+    box-sizing: border-box;
+  }
+  
+  /* Nút mũi tên – mặc định trong suốt */
+  .scroll-btn {
+    width: 18px;
+    height: 18px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.15s, border 0.15s;
+    border-radius: 2px;
+  }
+  
+  /* Hover: thêm hiệu ứng bo viền nhẹ và sáng nền */
+  .scroll-btn:hover {
+    background: linear-gradient(to bottom, #fefefe, #f4f4f4);
+    border: 1px solid #cfcfcf;
+    box-shadow: inset 0 1px 0 #fff;
+  }
+  
+  /* Khi click giữ */
+  .scroll-btn:active {
+    background: linear-gradient(to bottom, #e7effa, #d4e3f6);
+    border: 1px solid #8fb5e5;
+  }
+  
+  /* Icon mũi tên */
+  .scroll-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+  }
+  
+  /* Mũi tên xanh đậm */
+  .scroll-btn.up::before {
+    border-bottom: 5px solid #1f4f8f;
+  }
+  
+  .scroll-btn.down::before {
+    border-top: 5px solid #1f4f8f;
+  }
+  
+  /* Nút menu (mũi tên nhỏ + gạch ngang) */
+  .scroll-btn.menu::before {
+    border-top: 5px solid #1f4f8f;
+    top: 65%;
+  }
+  .scroll-btn.menu::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    top: 4px;
+    height: 2px;
+    background: #9a9a9a;
+    border-radius: 1px;
+  }
+  /* Giảm kích thước tất cả mũi tên ▼ trong ribbon */
+.ribbon small {
+    font-size: 7px;
+    line-height: 1;
+    vertical-align: middle;
+    color: #333;
+    margin-left: 2px;
+  }
+  
+  /* Nếu có mũi tên nằm riêng trong khối label (ví dụ “Paste ▼”) */
+  .label-with-dropdown small,
+  [data-action] small {
+    font-size: 7px;
+    margin-left: 2px;
+    color: #333;
+    position: relative;
+    top: 3px; /* đẩy nhẹ lên để canh giữa dòng */
+  }
+  
+    
+  
