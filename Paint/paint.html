@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paint Clone – Custom Structure</title>
+  <link rel="stylesheet" href="assests/style.css">
+  <script src="assests/paint.js" defer></script>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header id="paint-header">
+
+    <!-- Title bar -->
+    <div class="titlebar">
+      <div class="quick-tools">
+        <button data-btn="app">
+          <img src="assests/images/Header/painticon.png" alt="Paint icon">
+        </button>
+
+        <div class="divider"></div>
+
+        <div class="tool-group">
+          <button data-btn="save"><img src="assests/images/Header/save.png" alt="Save"></button>
+          <button data-btn="undo"><img src="assests/images/Header/back.png" alt="Undo"></button>
+          <button data-btn="redo"><img src="assests/images/Header/next.png" alt="Redo"></button>
+          <button data-btn="open"><img src="assests/images/Header/open.png" alt="Open"></button>
+        </div>
+
+        <div class="divider"></div>
+
+        <span class="window-title">Untitled – Paint</span>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button data-tab="file" class="active-file">File</button>
+      <button data-tab="home" class="active">Home</button>
+      <button data-tab="view">View</button>
+    </nav>
+
+    <!-- Ribbon -->
+    <div class="ribbon" role="toolbar">
+
+      <!-- Clipboard -->
+      <section data-panel="clipboard">
+        <div class="panel-body">
+          <div data-action="paste" class="large">
+            <img src="assests/images/Clipboard/paste.png" alt="Paste">
+            <span>Paste</span><small>▼</small>
+          </div>
+
+          <div class="side-actions">
+            <button data-action="cut">
+              <img src="assests/images/Clipboard/cut.png" alt="Cut"><span>Cut</span>
+            </button>
+            <button data-action="copy">
+              <img src="assests/images/Clipboard/copy.png" alt="Copy"><span>Copy</span>
+            </button>
+          </div>
+        </div>
+        <footer>Clipboard</footer>
+      </section>
+
+      <!-- Image -->
+      <section data-panel="image">
+        <div class="panel-body">
+          <div data-action="select" class="large">
+            <img src="assests/images/Image/select.png" alt="Select">
+            <span>Select</span><small>▼</small>
+          </div>
+
+          <div class="side-actions">
+            <button data-action="crop">
+              <img src="assests/images/Image/crop.png" alt="Crop"><span>Crop</span>
+            </button>
+            <button data-action="resize">
+              <img src="assests/images/Image/resize.png" alt="Resize"><span>Resize</span>
+            </button>
+            <button data-action="rotate">
+              <img src="assests/images/Image/rotate.png" alt="Rotate"><span>Rotate</span><small>▼</small>
+            </button>
+          </div>
+        </div>
+        <footer>Image</footer>
+      </section>
+
+      <!-- Tools -->
+      <section data-panel="tools">
+        <div class="tool-grid">
+          <button data-tool="pencil" class="active"><img src="assests/images/Tools/pencil.png" alt="Pencil"></button>
+          <button data-tool="fill"><img src="assests/images/Tools/paint.png" alt="Fill"></button>
+          <button data-tool="text"><img src="assests/images/Tools/font.png" alt="Text"></button>
+          <button data-tool="eraser"><img src="assests/images/Tools/eraser.png" alt="Eraser"></button>
+          <button data-tool="picker"><img src="assests/images/Tools/pen.png" alt="Picker"></button>
+          <button data-tool="zoom"><img src="assests/images/Tools/search.png" alt="Magnifier"></button>
+        </div>
+        <footer>Tools</footer>
+      </section>
+
+      <!-- Brushes -->
+      <section data-panel="brushes">
+        <div class="panel-body center">
+          <img src="assests/images/Others/brushes.png" alt="Brushes">
+          <div><span>Brushes</span><small>▼</small></div>
+        </div>
+        <footer></footer>
+      </section>
+
+      <!-- Shapes -->
+      <section data-panel="shapes">
+        <div class="shapes-wrapper">
+          <div class="shapes-box">
+            <div class="shapes-grid">
+              <img src="assests/images/Shapes/Bitmap40704.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40714.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40724.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40734.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40744.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40754.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40764.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40774.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40784.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40794.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40804.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40814.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40824.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40834.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40844.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40854.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40864.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40874.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40884.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40894.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40904.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40914.png" alt="">
+              <img src="assests/images/Shapes/Bitmap40924.png" alt="">
+            </div>
+        
+            <!-- Cột 3 mũi tên -->
+            <div class="shape-scroller">
+              <div class="scroll-btn up"></div>
+              <div class="scroll-btn down"></div>
+              <div class="scroll-btn menu"></div>
+            </div>
+          </div>
+        
+          <div class="fill-options">
+            <button>
+              <img src="assests/images/Others/outline.png"><span>Outline</span><small>▼</small>
+            </button>
+            <button>
+              <img src="assests/images/Others/fill.png"><span>Fill</span><small>▼</small>
+            </button>
+          </div>
+        </div>
+        
+        <footer>Shapes</footer>
+      </section>
+
+      <!-- Size -->
+      <section data-panel="size">
+        <div class="panel-body center">
+          <img src="assests/images/Colors/size.png" alt="Size">
+          <div><span>Size</span><small>▼</small></div>
+        </div>
+      </section>
+
+      <!-- Colors -->
+      <section data-panel="colors">
+        <div class="color-wrapper">
+          <!-- Cặp ô Color 1 & Color 2 -->
+          <div class="color-pairs">
+            <div class="color-box-set">
+              <div class="color-swatch active" id="primary-color">
+                <div class="swatch-inner" style="background:black;"></div>
+                <span>Color<br>1</span>
+              </div>
+              <div class="color-swatch" id="secondary-color">
+                <div class="swatch-inner" style="background:white;"></div>
+                <span>Color<br>2</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bảng màu palette -->
+          <div class="color-palette">
+            <div class="row">
+              <div class="cell" style="background:black;"></div>
+              <div class="cell" style="background:#696969;"></div>
+              <div class="cell" style="background:#800000;"></div>
+              <div class="cell" style="background:red;"></div>
+              <div class="cell" style="background:orange;"></div>
+              <div class="cell" style="background:yellow;"></div>
+              <div class="cell" style="background:#008000;"></div>
+              <div class="cell" style="background:#00CED1;"></div>
+              <div class="cell" style="background:#0000FF;"></div>
+              <div class="cell" style="background:#800080;"></div>
+            </div>
+
+            <div class="row">
+              <div class="cell" style="background:white; border:1px solid #A0A0A0;"></div>
+              <div class="cell" style="background:#C0C0C0;"></div>
+              <div class="cell" style="background:#A52A2A;"></div>
+              <div class="cell" style="background:pink;"></div>
+              <div class="cell" style="background:#FFD700;"></div>
+              <div class="cell" style="background:#BDB76B;"></div>
+              <div class="cell" style="background:#9ACD32;"></div>
+              <div class="cell" style="background:#ADD8E6;"></div>
+              <div class="cell" style="background:#B0C4DE;"></div>
+              <div class="cell" style="background:#DDA0DD;"></div>
+            </div>
+
+            <div class="row">
+              <div class="cell empty"></div>
+              <div class="cell empty"></div>
+              <div class="cell empty"></div>
+              <div class="cell empty"></div>
+              <div class="cell empty"></div>
+              <div class="cell empty"></div>
+              <div class="cell empty"></div>
+              <div class="cell empty"></div>
+              <div class="cell empty"></div>
+              <div class="cell empty"></div>
+            </div>
+          </div>
+
+          <!-- Edit Colors -->
+          <div class="edit-color-panel">
+            <img src="assests/images/Colors/editcolors.png" alt="Edit Colors">
+            <span>Edit<br>colors</span>
+          </div>
+        </div>
+        <footer>Colors</footer>
+      </section>
+
+
+      <!-- Paint 3D -->
+      <section data-panel="paint3d">
+        <div class="panel-body center">
+          <img src="assests/images/Others/3d.png" alt="Paint 3D">
+          <span>Edit with<br>Paint 3D</span>
+        </div>
+      </section>
+
+    </div>
+  </header>
+
+  <!-- CANVAS  -->
+  <main id="workspace">
+    <canvas id="my-canvas" width="800" height="550"></canvas>
+  </main>
+</body>
+</html>
