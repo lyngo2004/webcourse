@@ -1,0 +1,12 @@
+1. 
+- Nguyên tắc SOLID: các module cấp cao không được phụ thuộc vào module cấp thấp, chỉ được phụ thuộc thông qua interface.
+- DI -> Java/C#
+- OOP, Design Pattern
+- IoC
+
+
+2. API
+- có file json -> hiểu và chuyển nó thành object để thao tác trên thao tác đó
+
+3. React:
+- virtual DOM to change content in DOM.
