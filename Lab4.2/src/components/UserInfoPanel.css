@@ -1,0 +1,41 @@
+.user-info-panel {
+  position: absolute;
+  right: 10px;
+  top: 80px;
+  width: 250px;
+  padding: 16px;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  border-radius: 12px;
+  animation: fadeIn 0.3s ease-out;
+  z-index: 999;
+}
+
+.userinfo-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.userinfo-content h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.userinfo-content p {
+  margin: 4px 0;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.userinfo-song {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
